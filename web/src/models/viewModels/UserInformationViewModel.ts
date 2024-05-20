@@ -1,4 +1,4 @@
-import { Genders } from "../enums/Genders";
+import { Genders } from "../../enums/Genders";
 import { InterestViewModel } from "./InterestViewModel";
 
 export interface UserInformationViewModel {

@@ -1,4 +1,4 @@
-﻿namespace CommunifyLibrary.NonPersistentModels.Enums;
+﻿namespace CommunifyLibrary.Enums;
 
 public enum Genders
 {

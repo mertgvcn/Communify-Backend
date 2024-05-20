@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom"
 //models
-import { Roles } from "../models/enums/Roles"
+import { Roles } from "../enums/Roles"
 //components
 import RouterGuest from "./RouterGuest"
 import RouterAdmin from "./RouterAdmin"

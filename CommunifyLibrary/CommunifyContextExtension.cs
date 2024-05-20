@@ -13,6 +13,7 @@ namespace CommunifyLibrary
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new InterestConfiguration());
             modelBuilder.ApplyConfiguration(new PasswordTokenConfiguration());
+            modelBuilder.ApplyConfiguration(new NotificationConfiguration());
         }
 
         public static IHost MigrateDatabaseOnStart(this IHost app)

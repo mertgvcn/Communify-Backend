@@ -7,7 +7,7 @@ import { FormStateType } from './types/FormStateType'
 import { FormDataType } from './types/FormDataType'
 //models
 import { InterestViewModel } from '../../../models/viewModels/InterestViewModel'
-import { Genders } from '../../../models/enums/Genders'
+import { Genders } from '../../../enums/Genders'
 //icons
 import { IoCloseCircleOutline } from 'react-icons/io5'
 //helpers

@@ -45,7 +45,7 @@ namespace Communify_Backend
             collection.AddScoped<ICryptionService, CryptionService>();
             collection.AddScoped<IEmailSender, EmailSender>();
             collection.AddScoped<INavbarService, NavbarService>();
-            collection.AddScoped<IUserProfileService, UserProfileService>();
+            collection.AddScoped<IProfilePageService, ProfilePageService>();
             collection.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
 
@@ -62,6 +62,7 @@ namespace Communify_Backend
                 collection.AddScoped<IRoleRepository, RoleRepository>();
                 collection.AddScoped<IInterestRepository, InterestRepository>();
                 collection.AddScoped<IPasswordTokenRepository, PasswordTokenRepository>();
+                collection.AddScoped<INotificationRepository, NotificationRepository>();
             }
         }
 

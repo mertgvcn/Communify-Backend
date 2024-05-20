@@ -14,6 +14,10 @@ public class UserProfile : Profile
         CreateMap<User, SearchedUserViewModel>()
             .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.FirstName + " " + src.LastName));
 
+        CreateMap<User, ProfileStatsViewModel>()
+            .ForMember(dest => dest.FollowerCount, opt => opt.MapFrom(src => src.Followers.Count))
+            .ForMember(dest => dest.FollowingCount, opt => opt.MapFrom(src => src.Followings.Count));
+
         CreateMap<User, UserInformationViewModel>();
 
         CreateMap<User, UserInformationSummaryViewModel>();

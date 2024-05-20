@@ -1,4 +1,4 @@
-﻿using CommunifyLibrary.NonPersistentModels.Enums;
+﻿using CommunifyLibrary.Enums;
 using LethalCompany_Backend.Models.InterestModels;
 
 namespace CommunifyLibrary.NonPersistentModels.ViewModels;

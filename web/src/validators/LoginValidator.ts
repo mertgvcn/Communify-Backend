@@ -6,7 +6,7 @@ export class LoginValidator extends Validator<FormDataType> {
         super();
 
         this.ruleFor("credential")
-        .notEmpty().withMessage("Credential is required")
+        .notEmpty().withMessage("Email or username is required")
 
         this.ruleFor("password")
         .notEmpty().withMessage("Password is required")

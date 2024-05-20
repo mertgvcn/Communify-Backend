@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LethalCompany_Backend.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 public class NavbarController : Controller
 {
     private readonly INavbarService _navbarService;
@@ -17,9 +17,9 @@ public class NavbarController : Controller
         _navbarService = navbarService;
     }
 
-    [HttpPost("Search")]
+    [HttpPost]
     [AllowAnonymous]
-    public async Task<JsonResult> Search(SearchRequest request)
+    public async Task<JsonResult> Search([FromBody] SearchRequest request)
     {
         var users = await _navbarService.SearchAsync(request);
         string[] communities = [];
@@ -36,8 +36,13 @@ public class NavbarController : Controller
         return new JsonResult(result);
     }
 
-    [HttpGet("GetUserInformationSummary")]
+    [HttpGet]
     [Authorize(Roles = "User")]
-    public async Task<UserInformationSummaryViewModel> GetUserInformationSummary()
-        => await _navbarService.GetUserInformationSummaryAsync();
+    public async Task<List<NotificationViewModel>> GetNotifications()
+        => await _navbarService.GetNotificationsAsync();
+
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<string> GetUsername()
+        => await _navbarService.GetUsernameAsync();
 }

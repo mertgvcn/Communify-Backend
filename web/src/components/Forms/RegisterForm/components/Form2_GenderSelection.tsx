@@ -4,7 +4,7 @@ import './styles/Form2_GenderSelection.css'
 //types
 import { FormLocationsType } from '../types/FormLocationsType'
 //models
-import { Genders } from '../../../../models/enums/Genders';
+import { Genders } from '../../../../enums/Genders';
 //helpers
 import toast from 'react-hot-toast';
 //components

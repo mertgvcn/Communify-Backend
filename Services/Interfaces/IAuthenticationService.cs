@@ -9,7 +9,7 @@ namespace Communify_Backend.Services.Interfaces
         Task<UserLoginResponse> LoginUserAsync(UserLoginRequest request);
         Task RegisterUserAsync(UserRegisterRequest user);
         Task ForgotPasswordAsync(ForgotPasswordRequest request);
-        Task ChangePasswordAsync();
+        Task ChangePasswordAsync(ChangePasswordRequest request);
         Task SetPasswordAsync(SetPasswordRequest request);
     }
 }

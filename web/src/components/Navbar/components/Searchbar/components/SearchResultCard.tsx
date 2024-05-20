@@ -9,14 +9,16 @@ import { useNavigate } from 'react-router-dom';
 import { SearchedUserViewModel } from '../../../../../models/viewModels/SearchedUserViewModel'
 
 type SearchResultCardType = {
-    data: SearchedUserViewModel
+    data: SearchedUserViewModel,
+    setDropDownState: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const SearchResultCard = (props: SearchResultCardType) => {
     const navigate = useNavigate()
 
     const handleProfileClick = () => {
-        navigate("/profile", {state : {username : props.data.username}})
+        navigate("/profile", { state: { username: props.data.username } })
+        props.setDropDownState(false)
     }
 
     return (
@@ -28,7 +30,7 @@ const SearchResultCard = (props: SearchResultCardType) => {
             <div className='info'>
                 <span className='full-name'>{props.data.fullName}</span>
                 <span className='username'>#{props.data.username}</span>
-            </div>        
+            </div>
         </div>
     )
 }

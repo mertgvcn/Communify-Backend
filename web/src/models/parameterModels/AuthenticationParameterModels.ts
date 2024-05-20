@@ -1,4 +1,4 @@
-import { Genders } from "../enums/Genders"
+import { Genders } from "../../enums/Genders"
 import { InterestViewModel } from "../viewModels/InterestViewModel"
 
 export type LoginRequest = {
@@ -33,4 +33,14 @@ export type RegisterRequest = {
 export type SetPasswordRequest = {
     token: string,
     password: string
+}
+
+export type ChangePasswordRequest = {
+    oldPassword: string,
+    newPassword: string
+}
+
+export type ChangePasswordResponse = {
+    replyMessage : string,
+    isSuccess : boolean
 }

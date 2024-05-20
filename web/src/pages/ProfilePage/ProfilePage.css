@@ -99,6 +99,7 @@
 .profile-management {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     height: fit-content;
     padding: 1rem 0rem;
@@ -121,4 +122,15 @@
 .profile-management .manager .info .description {
     font-size: 12px;
     color: #7a8282;
+}
+
+/*follow-chat buttons*/
+.button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: fit-content;
+    padding: 1rem 0rem;
+    box-sizing: border-box;
 }

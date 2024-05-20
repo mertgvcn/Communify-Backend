@@ -1,4 +1,4 @@
-﻿using CommunifyLibrary.NonPersistentModels.Enums;
+﻿using CommunifyLibrary.Enums;
 
 namespace CommunifyLibrary.NonPersistentModels.ParameterModels;
 

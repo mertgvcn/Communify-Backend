@@ -1,4 +1,4 @@
-﻿using CommunifyLibrary.NonPersistentModels.Enums;
+﻿using CommunifyLibrary.Enums;
 
 public class SendEmailRequest
 {

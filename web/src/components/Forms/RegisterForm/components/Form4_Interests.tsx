@@ -6,7 +6,7 @@ import { FormDataType } from '../types/FormDataType'
 import { FormLocationsType } from '../types/FormLocationsType'
 //models
 import { InterestViewModel } from '../../../../models/viewModels/InterestViewModel'
-import { Genders } from '../../../../models/enums/Genders'
+import { Genders } from '../../../../enums/Genders'
 //helpers
 import { RegisterRequest } from '../../../../models/parameterModels/AuthenticationParameterModels'
 import { register } from '../../../../utils/apis/AuthenticationAPI'

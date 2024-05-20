@@ -12,6 +12,6 @@ namespace CommunifyLibrary.Repository
         Task<long> GetIdByEmailAsync(string email);
         Task UpdateAsync(User user);
         Task<User> AddAsync(User Entity);
-        Task AddInterest(long userId, Interest interest);
+        Task AddInterest(long userId, long interestId);
     }
 }

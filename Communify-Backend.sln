@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Communify-Backend", "Commun
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunifyLibrary", "CommunifyLibrary\CommunifyLibrary.csproj", "{A3947E85-0863-47BC-8CE5-727D49E51CA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communify.CDN", "..\Communify.CDN\Communify.CDN.csproj", "{E16B1E7F-A656-432C-98DA-668877780010}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{A3947E85-0863-47BC-8CE5-727D49E51CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3947E85-0863-47BC-8CE5-727D49E51CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3947E85-0863-47BC-8CE5-727D49E51CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E16B1E7F-A656-432C-98DA-668877780010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E16B1E7F-A656-432C-98DA-668877780010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E16B1E7F-A656-432C-98DA-668877780010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E16B1E7F-A656-432C-98DA-668877780010}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

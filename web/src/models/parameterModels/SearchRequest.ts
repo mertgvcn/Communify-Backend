@@ -1,4 +1,4 @@
-import { SearchTypes } from "../enums/SearchTypes";
+import { SearchTypes } from "../../enums/SearchTypes";
 
 export interface SearchRequest {
     input: string,

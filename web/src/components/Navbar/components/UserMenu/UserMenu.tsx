@@ -1,24 +1,27 @@
 import React from 'react'
 //css
-import './DropDownProfile.css'
+import './UserMenu.css'
 //icons
 import { FaUser } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { FaSignOutAlt } from "react-icons/fa";
 //helpers
-import { deleteCookie } from '../../../../utils/Cookie';
 import { useNavigate } from 'react-router';
+import { getUsername } from '../../../../utils/apis/NavbarAPI';
+import { deleteCookie } from '../../../../utils/Cookie';
 
-type dropDownProfileType = {
-    setDropDownProfileState : React.Dispatch<React.SetStateAction<boolean>>
+type userMenuType = {
+    setUserMenuState: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const DropDownProfile = (props : dropDownProfileType) => {
+const UserMenu = (props: userMenuType) => {
     const navigate = useNavigate()
 
     const handleProfile = async () => {
-        navigate("/profile")
-        props.setDropDownProfileState(false)
+        const username = await getUsername()
+
+        navigate("/profile", { state: { username: username } })
+        props.setUserMenuState(false)
     }
 
     const handleLogout = () => {
@@ -31,8 +34,8 @@ const DropDownProfile = (props : dropDownProfileType) => {
     }
 
     return (
-        <div className='drop-down-profile'>
-            <ul className='list-wrapper'>
+        <div className='user-menu-wrapper'>
+            <ul className='list'>
 
                 <li style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }} onClick={handleProfile}>
                     <FaUser className='icon' />
@@ -54,4 +57,4 @@ const DropDownProfile = (props : dropDownProfileType) => {
     )
 }
 
-export default DropDownProfile
+export default UserMenu

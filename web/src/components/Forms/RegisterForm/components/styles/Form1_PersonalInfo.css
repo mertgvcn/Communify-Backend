@@ -34,7 +34,3 @@
     align-items: center;
     justify-content: space-between;
 }
-
-::-webkit-scrollbar {
-    display: none;
-}

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 //css
 import './Searchbar.css'
 //models
-import { SearchTypes } from '../../../../models/enums/SearchTypes';
+import { SearchTypes } from '../../../../enums/SearchTypes';
 import { SearchRequest } from '../../../../models/parameterModels/SearchRequest';
 import { SearchedUserViewModel } from '../../../../models/viewModels/SearchedUserViewModel';
 //icons
@@ -77,10 +77,9 @@ const Searchbar = () => {
             </div>
 
             <div className={`searchbar-drop-down ${(dropDownState && searchInputRef.current.trim()) ? `active` : `inactive`} `}>
-
                 {
                     searchResult.users.map((result, idx) => (
-                        <SearchResultCard data={result} key={idx} />
+                        <SearchResultCard data={result} setDropDownState={setDropDownState} key={idx} />
                     ))
                 }
 

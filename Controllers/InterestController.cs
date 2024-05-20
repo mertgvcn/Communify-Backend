@@ -9,27 +9,26 @@ using Microsoft.EntityFrameworkCore;
 namespace LethalCompany_Backend.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [AllowAnonymous]
-    public class InterestController : Controller
+    public class InterestController(IInterestRepository interestRepository, IMapper mapper, IUserRepository userRepository) : Controller
     {
-        private readonly IInterestRepository _interestRepository;
-        private readonly IMapper _mapper;
 
-        public InterestController(IInterestRepository interestRepository, IMapper mapper)
-        {
-            _interestRepository = interestRepository;
-            _mapper = mapper;
-        }
 
-        [HttpGet("GetInterests")]
+        [HttpGet]
         public async Task<List<InterestViewModel>> GetInterests()
         {
-            var interests = await _interestRepository.GetAll()
-                .ProjectTo<InterestViewModel>(_mapper.ConfigurationProvider)
+            var interests = await interestRepository.GetAll()
+                .ProjectTo<InterestViewModel>(mapper.ConfigurationProvider)
                 .ToListAsync();
 
             return interests;
+        }
+
+        [HttpPost]
+        public async Task AddInterest(long userId, long interestId)
+        {
+            await userRepository.AddInterest(userId, interestId);
         }
     }
 }

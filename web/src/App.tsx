@@ -1,6 +1,6 @@
 //models
 import { TokenViewModel } from "./models/viewModels/TokenViewModel";
-import { Roles } from "./models/enums/Roles";
+import { Roles } from "./enums/Roles";
 //helpers
 import { getCookie } from "./utils/Cookie";
 import { jwtDecode } from "jwt-decode";

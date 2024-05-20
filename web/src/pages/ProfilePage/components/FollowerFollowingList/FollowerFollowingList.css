@@ -1,0 +1,79 @@
+.follower-following-list-background {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.follower-following-list-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 600px;
+    border-radius: .25rem;
+    background-color: rgb(245, 245, 245);
+    color: #18403c;
+}
+
+.follower-following-list-wrapper .close-button-wrapper {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    width: fit-content;
+    height: fit-content;
+    color: #2c9ba6;
+    font-size: 28px;
+}
+
+.follower-following-list-wrapper .tabs {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    padding: 0rem 1rem;
+    margin-top: 1rem;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.follower-following-list-wrapper .tabs .tab {
+    display: flex;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.5rem;
+    border-bottom: 3px solid #18403c;
+    cursor: pointer;
+}
+
+.follower-following-list-wrapper .tabs .tab.active {
+    color: #2c9ba6;
+    border-color: #2c9ba6;
+}
+
+.follower-following-list-wrapper .content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+/*Scrollbar*/
+.follower-following-list-wrapper .content::-webkit-scrollbar {
+    display: block;
+    width: 5px;
+}
+
+.follower-following-list-wrapper .content::-webkit-scrollbar-track {
+    background-color: rgb(245,245,245);
+}
+
+.follower-following-list-wrapper .content::-webkit-scrollbar-thumb {
+    background-color: #c2c2c2;
+}

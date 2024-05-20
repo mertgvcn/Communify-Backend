@@ -1,6 +1,6 @@
 import React from 'react'
 //models
-import { Roles } from '../../models/enums/Roles'
+import { Roles } from '../../enums/Roles'
 //css
 import "./HomePage.css"
 

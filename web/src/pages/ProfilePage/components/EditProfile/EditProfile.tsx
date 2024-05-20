@@ -11,7 +11,7 @@ import { TbBuildingCommunity } from 'react-icons/tb'
 import { FaTrash } from "react-icons/fa";
 //models
 import { UserInformationViewModel } from '../../../../models/viewModels/UserInformationViewModel'
-import { Genders } from '../../../../models/enums/Genders'
+import { Genders } from '../../../../enums/Genders'
 //hooks
 import useDynamicValidation from '../../../../hooks/useDynamicValidation'
 //helpers

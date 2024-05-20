@@ -17,7 +17,9 @@ namespace LethalCompany_Backend.Services
             if (httpContextAccessor.HttpContext is not null)
             {
                 var userID = httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                return int.Parse(userID);
+
+                if (userID != null)
+                    return int.Parse(userID);
             }
 
             return -1;

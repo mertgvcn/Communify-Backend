@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Communify_Backend.Services.Interfaces;
+using CommunifyLibrary.Enums;
 using CommunifyLibrary.Models;
-using CommunifyLibrary.NonPersistentModels.Enums;
 using CommunifyLibrary.NonPersistentModels.ParameterModels;
 using CommunifyLibrary.Repository;
 using CommunifyLibrary.Repository.Interfaces;
+using LethalCompany_Backend.Exceptions;
 using LethalCompany_Backend.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Security;
 using System.Text.RegularExpressions;
 
 namespace Communify_Backend.Services;
@@ -14,7 +16,6 @@ namespace Communify_Backend.Services;
 public class AuthenticationService : IAuthenticationService
 {
     private readonly IUserRepository _userRepository;
-    private readonly IInterestRepository _interestRepository;
     private readonly IPasswordTokenRepository _passwordTokenRepository;
     private readonly ITokenService _tokenService;
     private readonly ICryptionService _cryptionService;
@@ -24,7 +25,6 @@ public class AuthenticationService : IAuthenticationService
 
     public AuthenticationService(
         IUserRepository userRepository,
-        IInterestRepository interestRepository,
         IPasswordTokenRepository passwordTokenRepository,
         ITokenService tokenService,
         ICryptionService cryptionService,
@@ -34,7 +34,6 @@ public class AuthenticationService : IAuthenticationService
         )
     {
         _userRepository = userRepository;
-        _interestRepository = interestRepository;
         _passwordTokenRepository = passwordTokenRepository;
         _tokenService = tokenService;
         _cryptionService = cryptionService;
@@ -100,8 +99,7 @@ public class AuthenticationService : IAuthenticationService
 
         foreach (var interestId in request.InterestIdList)
         {
-            var interest = await _interestRepository.GetByIdAsync(interestId);
-            await _userRepository.AddInterest(user.Id, interest);
+            await _userRepository.AddInterest(user.Id, interestId);
         }
 
         var generatedToken = await _tokenService.CreatePasswordTokenAsync(user.Id);
@@ -130,31 +128,46 @@ public class AuthenticationService : IAuthenticationService
         });
     }
 
-    public async Task ChangePasswordAsync()
+    public async Task ChangePasswordAsync(ChangePasswordRequest request)
     {
         var userId = _httpContextService.GetCurrentUserID();
         var user = await _userRepository.GetByIdAsync(userId);
 
-        var generatedToken = await _tokenService.CreatePasswordTokenAsync(user.Id);
+        var plainOldPassword = await _cryptionService.Decrypt(request.oldPassword);
+        var plainNewPassword = await _cryptionService.Decrypt(request.newPassword);
 
-        await _emailSender.SendEmailAsync(new SendEmailRequest
+        if (BCrypt.Net.BCrypt.Verify(plainOldPassword, user.Password))
         {
-            ReceiverMail = user.Email,
-            MailType = MailTypes.ChangePasswordMail,
-            UrlExtension = "setpassword?token=" + generatedToken.Token
-        });
+            if (request.oldPassword != request.newPassword)
+            {
+                user.Password = BCrypt.Net.BCrypt.HashPassword(plainNewPassword);
+                await _userRepository.UpdateAsync(user);
+            }
+            else
+            {
+                throw new SamePasswordException("New password cannot be the same as the old password");
+            }
+        }
+        else
+        {
+            throw new InvalidPasswordException("Invalid password");
+        }
     }
+
 
     public async Task SetPasswordAsync(SetPasswordRequest request)
     {
         var passwordToken = await _passwordTokenRepository.GetByTokenAsync(request.Token);
 
-        if (passwordToken is null) return;
+        if (passwordToken is null) throw new PasswordTokenNotFoundException("Token bulunamadi");
 
         if (DateTime.UtcNow < passwordToken.ExpireDate)
         {
             var user = await _userRepository.GetAll().Where(a => a.Id == passwordToken.UserId).SingleAsync();
             var plainPassword = await _cryptionService.Decrypt(request.Password);
+
+            bool ValidPassword = true;
+            if (!ValidPassword) throw new PasswordException("Password invalid");
 
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(plainPassword);
 

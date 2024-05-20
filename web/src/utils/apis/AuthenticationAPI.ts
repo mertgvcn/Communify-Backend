@@ -1,9 +1,9 @@
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
 //helpers
 import { Encrypt } from "../Cryption"
 import { getCookie } from "../Cookie"
 //models
-import { LoginRequest, LoginResponse, RegisterRequest, SetPasswordRequest } from "../../models/parameterModels/AuthenticationParameterModels"
+import { ChangePasswordRequest, ChangePasswordResponse, LoginRequest, LoginResponse, RegisterRequest, SetPasswordRequest } from "../../models/parameterModels/AuthenticationParameterModels"
 
 const baseUrl = process.env.REACT_APP_BASEURL
 const API_KEY = 'bearer ' + getCookie("jwt")
@@ -65,8 +65,15 @@ export const forgotPassword = async (email: string): Promise<void> => {
     return response.data
 }
 
-export const changePassword = async (): Promise<void> => {
-    const response = await axios.post(baseUrl + '/api/Authentication/ChangePassword', {},
+export const changePassword = async (request: ChangePasswordRequest): Promise<AxiosResponse<any, any>> => {
+    const encryptedOldPassword = await Encrypt(request.oldPassword);
+    const encryptedNewPassword = await Encrypt(request.newPassword);
+
+    const response = await axios.post(baseUrl + '/api/Authentication/ChangePassword', 
+    {
+        oldPassword : encryptedOldPassword,
+        newPassword : encryptedNewPassword
+    },
         {
             headers: {
                 'Authorization': API_KEY
@@ -74,7 +81,7 @@ export const changePassword = async (): Promise<void> => {
         }
     )
 
-    return response.data
+    return response
 }
 
 export const setPassword = async (request: SetPasswordRequest): Promise<void> => {
